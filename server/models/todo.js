@@ -30,4 +30,4 @@ var Todo = mongoose.model('Todo', { /*first argument is collection name */
 //   console.log('Unable to save todo');
 // });
 
-module.exports = {Todo};
+module.exports = {Todo}; /* Todo allows for collection operations (find, save, etc)*/
