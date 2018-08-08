@@ -30,7 +30,7 @@ app.get('/todos', (req, res) => { // return all todos in collection
   });
 });
 
-app.get('/todos/:id', (req, res) => {
+app.get('/todos/:id', (req, res) => { // return a todo queried by id
   var id = req.params.id;
   if (!ObjectID.isValid(id)) {
     return res.status(400).send({}/*{message: 'Id is not valid'}*/);
