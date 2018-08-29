@@ -129,12 +129,6 @@ describe('DELETE /todos/:id', () => {
           expect(todo).toNotExist();
           done();
         }).catch(e => done(e));
-
-
-        // query database using findById
-          // should not exist (toNotExist)
-
-
       });
   });
 
@@ -151,5 +145,4 @@ describe('DELETE /todos/:id', () => {
       .expect(400)
       .end(done);
   });
-
 })
