@@ -7,6 +7,7 @@ var {Todo}      = require('./models/todo');
 var {User}      = require('./models/user');
 
 var app = express();
+const port = process.env.PORT || 3010
 
 app.use(bodyParser.json());
 
@@ -47,8 +48,8 @@ app.get('/todos/:id', (req, res) => { // return a todo queried by id
 })
 
 
-app.listen(3010, () => {
-  console.log('Started on port 3010');
+app.listen(port, () => {
+  console.log(`Started on port ${port}`);
 });
 
 
