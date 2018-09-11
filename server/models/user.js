@@ -42,9 +42,7 @@ UserSchema.methods.toJSON = function() { // Overwrites an (instance?) method -> 
   var userObject = user.toObject(); // converts mongoose object to regular object (only document data remains)
 
   return _.pick(userObject, ['_id', 'email']);
-
 };
-
 
 UserSchema.methods.generateAuthToken = function() { // creates an instance method
   // Can not use arrow functions, as arrow functions do not bind a this keyword.
@@ -62,6 +60,26 @@ UserSchema.methods.generateAuthToken = function() { // creates an instance metho
     return token
   }); // return promise so it can be chained in server.js
 };
+
+UserSchema.statics.findByToken = function(token) {
+  var User = this;
+  var decoded;
+
+  try {
+    decoded = jwt.verify(token, 'somesecretabc123')
+  } catch (e) {
+    return Promise.reject(); // return rejected promise so catch in server.js is called
+  }
+  return User.findOne({
+    '_id': decoded._id,
+    'tokens.token': token,
+    'tokens.access': 'auth'
+  });
+};
+
+
+
+
 
 // Model / scheme for users
 var User = mongoose.model('Users', UserSchema);
