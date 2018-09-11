@@ -93,8 +93,6 @@ UserSchema.pre('save', function(next) { // mongoose middleware, always runs befo
   }
 });
 
-
-
 // Model / scheme for users
 var User = mongoose.model('Users', UserSchema);
 
