@@ -311,13 +311,5 @@ describe('POST /users/login', () => {
           done();
         }).catch(e => done(e));
       });
-
-
-
   });
-
-
-
-
-
 });
