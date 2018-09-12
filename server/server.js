@@ -89,8 +89,7 @@ app.patch('/todos/:id', (req, res) => {
 });
 
 
-// post users
-// use pick email & password
+// POST /users
 app.post('/users', (req, res) => {
   var body = _.pick(req.body, ['email','password']);
   var user = new User(body);
@@ -103,6 +102,39 @@ app.post('/users', (req, res) => {
     res.status(400).send(e);
   });
 });
+
+// POST /users/login
+app.post('/users/login', (req, res) => {
+  var body = _.pick(req.body, ['email','password']);
+
+  User.findByCredentials(body.email, body.password).then(user => {
+    return user.generateAuthToken().then(token => {
+      res.header('x-auth', token).send(user);
+    })
+  }).catch(e => {
+    res.status(400).send();
+  });
+
+
+
+  // var {email, password} = req.body;
+  // console.log(email, password);
+  //
+  // User.findOne({email}).then((user) => {
+  //   var hashedPassword = user.password;
+  //
+  //   bcrypt.compare(password, hashedPassword, (err, res) => {
+  //     if (err) console.log(5, err);
+  //     console.log(4, res);
+  //   })
+  // }).catch(e => {
+  //   res.status(400).send(e);
+  // });
+});
+
+
+
+
 
 
 
