@@ -114,29 +114,7 @@ app.post('/users/login', (req, res) => {
   }).catch(e => {
     res.status(400).send();
   });
-
-
-
-  // var {email, password} = req.body;
-  // console.log(email, password);
-  //
-  // User.findOne({email}).then((user) => {
-  //   var hashedPassword = user.password;
-  //
-  //   bcrypt.compare(password, hashedPassword, (err, res) => {
-  //     if (err) console.log(5, err);
-  //     console.log(4, res);
-  //   })
-  // }).catch(e => {
-  //   res.status(400).send(e);
-  // });
 });
-
-
-
-
-
-
 
 app.get('/users/me', authenticate, (req, res) => {
   res.send(req.user); // Only executed if next was called in middleware
