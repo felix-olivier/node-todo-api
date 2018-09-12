@@ -15,19 +15,11 @@ var Todo = mongoose.model('Todo', { /*first argument is collection name */
   completedAt: {
     type: Number,
     default: null
+  },
+  _creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
   }
 });
-
-
-//// // Example code to create new todo
-// var newTodo = new Todo({
-//   text: 'Cook dinner',
-// });
-//
-// newTodo.save().then((doc) => {
-//   console.log('Saved todo', doc);
-// }, (e) => {
-//   console.log('Unable to save todo');
-// });
 
 module.exports = {Todo}; /* Todo allows for collection operations (find, save, etc)*/
