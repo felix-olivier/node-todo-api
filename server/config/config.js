@@ -3,7 +3,6 @@ console.log('**********', env);
 
 
 if (env === 'development' || env === 'test') {
-  console.log('THIS SHOULD NOT HAPPEN IN PROD');
   var config = require('./config.json'); /*automatically parsed by require*/
   var envConfig = config[env];
   Object.keys(envConfig).forEach(key => {
