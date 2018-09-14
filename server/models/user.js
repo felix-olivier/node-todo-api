@@ -50,7 +50,7 @@ UserSchema.methods.generateAuthToken = function() { // creates an instance metho
 
   var user = this;
   var access = 'auth';
-  var token = jwt.sign({_id: user._id.toHexString(), access}, 'somesecretabc123').toString();
+  var token = jwt.sign({_id: user._id.toHexString(), access}, process.env.JWT_SECRET).toString();
 
   console.log();
 
@@ -76,7 +76,7 @@ UserSchema.statics.findByToken = function(token) {
   var decoded;
 
   try {
-    decoded = jwt.verify(token, 'somesecretabc123')
+    decoded = jwt.verify(token, process.env.JWT_SECRET)
   } catch (e) {
     return Promise.reject(); // return rejected promise so catch in server.js is called
   }
